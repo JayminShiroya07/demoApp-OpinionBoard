@@ -18,8 +18,8 @@ export function NewOpinion() {
     if (body.trim().length < 10 || body.trim().length > 300) {
       errors.push('Opinion must be bewteen 10 and 300 charachters long.');
     }
-
-    if(userName.trim()){
+    
+    if(!userName.trim()){
       errors.push('please provide your name');
     }
 
@@ -58,11 +58,12 @@ export function NewOpinion() {
           <textarea id="body" name="body" rows={5} defaultValue={formSate.enteredValues?.body}></textarea>
         </p>
 
-        {formSate.errors && <ul className="errors">
-          {formSate.errors.map((error) => (
-            <li key={error}>{error}</li>
-          ))}
-        </ul> }
+        {formSate.errors &&
+          <ul className="errors">
+            {formSate.errors.map((error) => (
+              <li key={error}>{error}</li>
+            ))}
+          </ul>}
 
         <p className="actions">
           <button type="submit">Submit</button>
