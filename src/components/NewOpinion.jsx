@@ -1,5 +1,6 @@
 import { use,useActionState } from "react";
 import { OpinionsContext } from "../store/opinions-context";
+import Submit from "./Submit";
 
 export function NewOpinion() {
   const {addOpinion} = use(OpinionsContext);
@@ -18,7 +19,7 @@ export function NewOpinion() {
     if (body.trim().length < 10 || body.trim().length > 300) {
       errors.push('Opinion must be bewteen 10 and 300 charachters long.');
     }
-    
+
     if(!userName.trim()){
       errors.push('please provide your name');
     }
@@ -36,7 +37,9 @@ export function NewOpinion() {
     return { errors:null}
   }
 
-  const [formSate, formAction] = useActionState(shareOpinionAction,{errors:null})
+  const [formSate, formAction] = useActionState(shareOpinionAction,{
+    errors:null 
+  });
 
   return (
     <div id="new-opinion">
@@ -65,9 +68,7 @@ export function NewOpinion() {
             ))}
           </ul>}
 
-        <p className="actions">
-          <button type="submit">Submit</button>
-        </p>
+        <Submit/>
       </form>
     </div>
   );
